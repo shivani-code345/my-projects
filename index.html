@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivani- Developer portfollio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+IN:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background-color: rgb(145, 159, 159);
+            color:rgb(21, 19, 23);
+            font-family: 'Poppins', sans-serif;
+        }
+        nav{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height:80px;
+            background-color: rgb(220, 220, 15);
+        }
+        /* u1{
+            display:flex;
+            justify-content:space-between;
+            gap:20px;
+        } */
+        nav u1{
+            display: flex;
+            justify-content: center;
+
+        }
+        nav u1 li{
+            list-style:none;
+            margin: 0 23px;
+           
+        }
+        nav u1 li a{
+            text-decoration:none;
+            color:black;
+           
+        }
+        nav u1 li a:hover{
+            color: rgb(22, 22, 214);
+            font-size: 1.2rem;
+        }
+        .left{
+            /* height:10px; */
+            font-size: 1.5rem;
+        }
+        .firstSection{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 23px 0;
+            margin: 80px 0;
+        }
+        .firstSection >div{
+            width: 30%;
+    
+        }
+        .leftSection{
+            font-size: 2.5rem;
+            /* width: 34px; */
+            width: 80%;
+            margin:  50px 0;
+            margin: 70px 0;
+           
+        }
+        .rightSection{
+            width: 34px;
+            /* background-color: black; */
+        }
+        .rightSection img{
+            width: 80%;
+            
+            background-color: black;
+            mix-blend-mode: multiply;
+
+
+            /* margin:  50px 0; */
+        }
+        .purple{
+            color:blueviolet;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left">
+                Shivani Portfollio
+            </div>
+            <div class="right">
+                <u1>
+                    <li><a href="/">
+                        Home
+                    </a>
+                    </li>
+                    <li><a href="/">
+                        About
+                    </a>
+                    </li>
+                    <li><a href="/">
+                        Services
+                    </a>
+                    </li>
+                    <li><a href="/">
+                        Projects
+                    </a>
+                    </li>
+                    <li><a href="/">
+                        Contact me
+                    </a>
+                    </li>
+                </u1>
+
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="firstSection">
+            <div class="leftSection">
+                Hii, my name is <span class="purple">shivani</span> i am a web Developer
+            </div>
+            <div class="rightSection">
+            <img src="3426526.jpg" >
+
+            </div>
+
+        </section>
+        <section class="secondSection">
+            <h1></h1>
+        </section>
+        <button id="theme-toggle">Dark Mode</button>
+
+        <button id="modal-btn">Open Modal</button>
+       <div id="myModal" class="modal">
+       <div class="modal-content">
+       <span class="close-btn">&times;</span>
+       <p>This is a modal example!</p>
+      </div>
+    </div>
+    </main>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <script>
+        var typed = new Typed('#element', {
+          strings: ['web developer', 'graphic designer','web designer','video editor'],
+          typeSpeed: 50,
+        });
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+
+    function validateForm() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    if (!name || !email) {
+    alert("All fields are required!");
+    return false;
+    }
+    alert("Form submitted successfully!");
+    return true;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const lazyImages = document.querySelectorAll("img");
+    lazyImages.forEach(image => {
+    image.addEventListener("load", () => {
+      image.classList.add("visible");
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src; // Use data-src for lazy-loading
+          observer.unobserve(img);
+        }
+      });
+    });
+    observer.observe(image);
+  });
+});
+
+document.getElementById("theme-toggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+});
+
+// Add a CSS class
+/* .dark-mode { background-color: #121212; color: #ffffff; } */
+const modal = document.getElementById("myModal");
+document.getElementById("modal-btn").onclick = () => modal.style.display = "block";
+document.querySelector(".close-btn").onclick = () => modal.style.display = "none";
+window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; }
+
+fetch('https://api.github.com/users/your-username/repos')
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(repo => {
+      console.log(repo.name); // Example: Display repo names
+    });
+  });
+
+    </script>
+    
+</body>
+</html>
+<!-- if we want to use video in html so we have to do <video>tag will be use there</video> -->
